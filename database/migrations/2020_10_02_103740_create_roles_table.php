@@ -17,8 +17,7 @@ class CreateRolesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->index;
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('name');
-            $table->timestamps();
+            $table->string('role');
         });
     }
 

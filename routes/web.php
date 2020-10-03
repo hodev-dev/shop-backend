@@ -11,7 +11,10 @@ Route::get('/', function () {
 Route::post('/login', function (Request  $request) {
     $credentials = $request->only('email', 'password');
     if (Auth::attempt($credentials)) {
-        return response()->json(["auth" => Auth::check()]);
+        return response()->json([
+            "isLogin" => Auth::check(),
+            "role" => Auth::user()->role->with("permissions")->get(),
+        ]);
     } else {
         return response()->json(["auth" => Auth::check()]);
     }
@@ -19,4 +22,5 @@ Route::post('/login', function (Request  $request) {
 
 Route::get('/logout', function (Request  $request) {
     Auth::logout();
+    return response()->json(["auth" => Auth::check()]);
 });
