@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Price;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\PemissionSeeder;
@@ -20,7 +21,10 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             RoleSeeder::class,
             PemissionSeeder::class,
-            PermissionRoleSeeder::class
+            PermissionRoleSeeder::class,
+            GameSeed::class,
+            CurrencySeeder::class,
+            PriceSeed::class
         ]);
     }
 }
