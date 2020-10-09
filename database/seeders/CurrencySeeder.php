@@ -17,19 +17,13 @@ class CurrencySeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'USD',
-                'rate' => 30000,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ],
-            [
-                'name' => 'AUS',
+                'name' => 'AU',
                 'rate' => 21000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
             [
-                'name' => 'MYR',
+                'name' => 'MY',
                 'rate' => 8000,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

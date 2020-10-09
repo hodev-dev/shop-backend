@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             PemissionSeeder::class,
             PermissionRoleSeeder::class,
-            GameSeed::class,
+            // GameSeed::class,
+            // PriceSeed::class
             CurrencySeeder::class,
-            PriceSeed::class
         ]);
     }
 }
