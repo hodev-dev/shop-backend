@@ -2,12 +2,13 @@
 
 use App\Models\Game;
 use App\Models\User;
+use App\Models\Price;
 use App\Models\Currency;
+use App\Models\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Models\Price;
 use Illuminate\Support\Facades\Response;
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -19,6 +20,27 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     });
     Route::get('/games', function (Request $request) {
         return Game::with('prices')->with('prices.currency')->orderBy('created_at', 'desc')->take(25)->get();
+    });
+
+    Route::post('/collections', function (Request $request) {
+        $collection = Collection::insert([
+            'name' => $request->name
+        ]);
+        if ($collection) {
+            return Response::json($collection, 200);
+        } else {
+            return Response::json($collection, 404);
+        }
+    });
+    Route::get('/collections', function (Request $request) {
+        return Collection::with("games.prices.currency")->get();
+    });
+
+    Route::post('/collection_game', function (Request $request) {
+        $collection = Collection::where('name', $request->collection_name)->firstOrFail();
+        $game = Game::where('steam_id', $request->steamID)->firstOrFail();
+        $collection->games()->attach($game);
+        return Response::json([], 200);
     });
 
     Route::post('/steam', function (Request $request) {
