@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/collection_game', function (Request $request) {
         $collection = Collection::where('name', $request->collection_name)->firstOrFail();
         $game = Game::where('steam_id', $request->steamID)->firstOrFail();
-        $collection->games()->attach($game);
+        $collection->games()->syncWithoutDetaching($game);
         return Response::json([], 200);
     });
 

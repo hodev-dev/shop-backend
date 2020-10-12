@@ -16,6 +16,6 @@ class Game extends Model
     }
     public function collection()
     {
-        return $this->belongsToMany(Collection::class);
+        return $this->belongsToMany(Collection::class)->orderBy('created_at');
     }
 }
