@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Game extends Model
 {
     use HasFactory;
+    protected $perPage = 6;
     protected $fillable = ['steam_id', 'name', 'header_url'];
     public function prices()
     {
